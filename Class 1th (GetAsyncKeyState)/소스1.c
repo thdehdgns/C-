@@ -4,6 +4,8 @@
 #include <time.h>
 #define Size 5
 #define Hart 5
+#define Sec 1000
+
 void Shuffle(int Random[]) //int * Rnadom과 같음, 주소를 받음.
 {
 	srand(time(NULL));
@@ -137,38 +139,38 @@ int main()
 		int count = Hart;
 		srand(time(NULL));
 		value = (rand() % 50)+ 1;
-		Sleep(1000);
+		Sleep(Sec);
 		clayer();
 		printf("숫자를 맞추세요.1~50\n");
-	while (count > 0)
-	{
-		hartUi(count);
-		scanf_s("%d", &PlayerValue);
-		if (PlayerValue < value)
+		while (count > 0)
 		{
-			printf("Up");
-			--count;
-			Sleep(1000);
-		}
-		else if (PlayerValue > value)
-		{
-			printf("Down");
-			--count;
-			Sleep(1000);
-		}
-		else 
-		{
-			victoryText(count,value);
-			Sleep(1000);
-			break;
-		}
-		clayer();
+			hartUi(count);
+			scanf_s("%d", &PlayerValue);
+			if (PlayerValue < value)
+			{
+				printf("Up");
+				--count;
+				Sleep(Sec);
+			}
+			else if (PlayerValue > value)
+			{
+				printf("Down");
+				--count;
+				Sleep(Sec);
+			}
+			else 
+			{
+				victoryText(count,value);
+				Sleep(Sec);
+				break;
+			}
+			clayer();
 
-	}
-	if (count == 0)
-	{
-		printf("제가 이겼네요! 정답은 %d입니다.", value);
-	}
+		}
+		if (count == 0)
+		{
+			printf("제가 이겼네요! 정답은 %d입니다.", value);
+		}
 
 #pragma endregion
 
