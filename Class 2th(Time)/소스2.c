@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>
-#define Left 75
-#define Right 77
+#define Leftt 75
+#define Rightt 77
 #define Up 72
 #define Down 80
 void Position(int x, int y)
@@ -17,11 +17,11 @@ void Position(int x, int y)
 
 void exp(char input)
 {
-	if (input == Left)
+	if (input == Leftt)
 	{
 		printf("(ㅁO)");
 	}
-	else if (input == Right)
+	else if (input == Rightt)
 	{
 		printf("(Oㅁ)");
 	}
@@ -35,14 +35,81 @@ void exp(char input)
 	}
 }
 
+int screenIndex;
+HANDLE screen[2];
+
+
+void Initialize()
+{
+	CONSOLE_CURSOR_INFO cursor;
+	// 화면 버퍼를 2개 생성합니다.
+	screen[0] = CreateConsoleScreenBuffer(
+		GENERIC_READ | GENERIC_WRITE,
+		0,
+		NULL,
+		CONSOLE_TEXTMODE_BUFFER,
+		NULL
+		);
+	screen[1] = CreateConsoleScreenBuffer(
+		GENERIC_READ | GENERIC_WRITE,
+		0,
+		NULL,
+		CONSOLE_TEXTMODE_BUFFER,
+		NULL
+	);
+	cursor.dwSize = 1;
+	cursor.dwSize = FALSE;
+
+	SetConsoleCusorInfo(screen[0], &cursor);
+	SetConsoleCusorInfo(screen[1], &cursor);
+
+}
+
+void Flip()
+{
+	SteConsoleActiveScreenBuffer(screen[screenIndex]);
+	screenIndex = !screenIndex;
+	
+}
+
+void Clear()
+{
+	COORD position = { 0,0 };
+
+	DWORD dword;
+
+	CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	GetConsoleScreenBufferInfo(handle, &consoleInfo);
+	int Squard = (consoleInfo.srWindow.Bottom- consoleInfo.srWindow.Top+1) * (consoleInfo.srWindow.Right- consoleInfo.srWindow.Left +1);
+
+	FillConsoleOutCharacter(screen[screenIndex], ' ', Squard,position,&dword);
+}
+
 int main()
 {
+	CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+	
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	GetConsoleScreenBufferInfo(handle, &consoleInfo);
+
+	int left = consoleInfo.srWindow.Left;
+	int right = consoleInfo.srWindow.Right;
+	int top = consoleInfo.srWindow.Top;
+	int bottom = consoleInfo.srWindow.Bottom;
+
+	
+	
 	int x = 5;
 	int y = 5;
 	char input = 0;
 	Position(x, y);
 	while (1)
 	{
+		if (_kbhit)
+		{
+
 		Position(x, y);
 		exp(input);
 		input = _getch();
@@ -52,10 +119,10 @@ int main()
 		}
 		switch (input)
 		{
-			case Left:
-				if (x <= 0)
+			case Leftt:
+				if (x <= left)
 				{
-					x = 1;
+					x += 1;
 					break;
 				}
 				else
@@ -64,10 +131,10 @@ int main()
 					
 				}
 				break;
-			case Right:
-				if (x >= 75)
+			case Rightt:
+				if (x >= right -4)
 				{
-					x = 74;
+					x -= 1;
 					break;
 				}
 				else
@@ -77,9 +144,9 @@ int main()
 				
 				break;
 			case Up:
-				if (y <= 0)
+				if (y <= top)
 				{
-					y = 1;
+					y += 1;
 					break;
 				}
 				else
@@ -88,9 +155,9 @@ int main()
 				}
 				break;
 			case Down:
-				if (y >= 25)
+				if (y >= bottom)
 				{
-					y = 23;
+					y -= 1;
 					break;
 				}
 				else {
@@ -102,6 +169,7 @@ int main()
 				break;
 		}
 		
+		}
 		system("cls");
 	}
 	
