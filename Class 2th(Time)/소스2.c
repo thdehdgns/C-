@@ -5,15 +5,7 @@
 #define Rightt 77
 #define Up 72
 #define Down 80
-void Position(int x, int y)
-{
-	// x축과 y축을 설정
-	COORD position = { x,y };
 
-	// 커서 위치를 이동하는 함수
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), position);
-
-}
 
 void exp(char input)
 {
@@ -60,14 +52,15 @@ void Initialize()
 	cursor.dwSize = 1;
 	cursor.dwSize = FALSE;
 
-	SetConsoleCusorInfo(screen[0], &cursor);
-	SetConsoleCusorInfo(screen[1], &cursor);
+	
+	SetConsoleCursorInfo(screen[0], &cursor);
+	SetConsoleCursorInfo(screen[1], &cursor);
 
 }
 
 void Flip()
 {
-	SteConsoleActiveScreenBuffer(screen[screenIndex]);
+	SetConsoleActiveScreenBuffer(screen[screenIndex]);
 	screenIndex = !screenIndex;
 	
 }
@@ -84,7 +77,24 @@ void Clear()
 	GetConsoleScreenBufferInfo(handle, &consoleInfo);
 	int Squard = (consoleInfo.srWindow.Bottom- consoleInfo.srWindow.Top+1) * (consoleInfo.srWindow.Right- consoleInfo.srWindow.Left +1);
 
-	FillConsoleOutCharacter(screen[screenIndex], ' ', Squard,position,&dword);
+	FillConsoleOutputCharacter(screen[screenIndex], ' ', Squard, position, &dword);
+}
+
+void Release()
+{
+	CloseHandle(screen[0]);
+	CloseHandle(screen[1]);
+}
+
+void Render(int x, int y,const char * shape)
+{
+	DWORD dword;
+	// x축과 y축을 설정
+	COORD position = { x,y };
+
+	// 커서 위치를 이동하는 함수
+	SetConsoleCursorPosition(screen[screenIndex], position);
+	WriteFile(screen[screenIndex], shape, strlen(shape), &dword, NULL);
 }
 
 int main()
@@ -104,74 +114,79 @@ int main()
 	int x = 5;
 	int y = 5;
 	char input = 0;
-	Position(x, y);
+	
+	Initialize();
+
 	while (1)
 	{
+		Flip();
+		Clear();
+
+
 		if (_kbhit)
 		{
-
-		Position(x, y);
-		exp(input);
-		input = _getch();
-		if (input == -32)
-		{
+			//exp(input);
 			input = _getch();
-		}
-		switch (input)
-		{
-			case Leftt:
-				if (x <= left)
-				{
-					x += 1;
-					break;
-				}
-				else
-				{
-					x--;
+			if (input == -32)
+			{
+				input = _getch();
+			}
+			switch (input)
+			{
+				case Leftt:
+					if (x <= left)
+					{
+						x += 1;
+						break;
+					}
+					else
+					{
+						x--;
 					
-				}
-				break;
-			case Rightt:
-				if (x >= right -4)
-				{
-					x -= 1;
+					}
 					break;
-				}
-				else
-				{
-					x++;
-				}
+				case Rightt:
+					if (x >= right -4)
+					{
+						x -= 1;
+						break;
+					}
+					else
+					{
+						x++;
+					}
 				
-				break;
-			case Up:
-				if (y <= top)
-				{
-					y += 1;
 					break;
-				}
-				else
-				{
-					y--;
-				}
-				break;
-			case Down:
-				if (y >= bottom)
-				{
-					y -= 1;
+				case Up:
+					if (y <= top)
+					{
+						y += 1;
+						break;
+					}
+					else
+					{
+						y--;
+					}
 					break;
-				}
-				else {
-					y++;
-				}
-				break;
-			default:
-				printf("%d",input);
-				break;
-		}
+				case Down:
+					if (y >= bottom)
+					{
+						y -= 1;
+						break;
+					}
+					else {
+						y++;
+					}
+					break;
+				default:
+					printf("%d",input);
+					break;
+			}
 		
 		}
-		system("cls");
+		Render(x, y, "★");
 	}
-	
+	Release();
+
 	return 0;
 }

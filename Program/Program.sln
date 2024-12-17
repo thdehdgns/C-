@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class 1th (GetAsyncKeyState
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class 2th(Time)", "..\Class 2th(Time)\Class 2th(Time).vcxproj", "{AE92BDDA-F47B-439E-837E-EAA1A08045EF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class 3th(Double Buffer)", "..\Class 3th(Double Buffer)\Class 3th(Double Buffer).vcxproj", "{D8954E71-91F7-4658-A931-7E789A24DFC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{AE92BDDA-F47B-439E-837E-EAA1A08045EF}.Release|x64.Build.0 = Release|x64
 		{AE92BDDA-F47B-439E-837E-EAA1A08045EF}.Release|x86.ActiveCfg = Release|Win32
 		{AE92BDDA-F47B-439E-837E-EAA1A08045EF}.Release|x86.Build.0 = Release|Win32
+		{D8954E71-91F7-4658-A931-7E789A24DFC8}.Debug|x64.ActiveCfg = Debug|x64
+		{D8954E71-91F7-4658-A931-7E789A24DFC8}.Debug|x64.Build.0 = Debug|x64
+		{D8954E71-91F7-4658-A931-7E789A24DFC8}.Debug|x86.ActiveCfg = Debug|Win32
+		{D8954E71-91F7-4658-A931-7E789A24DFC8}.Debug|x86.Build.0 = Debug|Win32
+		{D8954E71-91F7-4658-A931-7E789A24DFC8}.Release|x64.ActiveCfg = Release|x64
+		{D8954E71-91F7-4658-A931-7E789A24DFC8}.Release|x64.Build.0 = Release|x64
+		{D8954E71-91F7-4658-A931-7E789A24DFC8}.Release|x86.ActiveCfg = Release|Win32
+		{D8954E71-91F7-4658-A931-7E789A24DFC8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

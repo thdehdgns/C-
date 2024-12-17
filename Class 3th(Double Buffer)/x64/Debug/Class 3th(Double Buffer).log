@@ -1,0 +1,3 @@
+﻿  소스3.c
+C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Class 3th(Double Buffer)\소스3.c(56,28): warning C4022: 'SetConsoleTextAttribute': 실제 매개 변수 1의 포인터가 일치하지 않습니다.
+  Class 3th(Double Buffer).vcxproj -> C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Program\x64\Debug\Class 3th(Double Buffer).exe
