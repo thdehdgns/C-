@@ -51,7 +51,19 @@ int main()
 
 #pragma endregion
 	enum TextColor color = 0;
-	SetConsoleTextAttribute((STD_OUTPUT_HANDLE), RED);
+	
+	int count = 0;
+	
+	while (1)
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), count++ % 15);
+		printf(" ¡Ú\n");
+
+		//system("pause");
+
+		Sleep(500);
+		system("cls");
+	}
 
 	return 0;
 }
