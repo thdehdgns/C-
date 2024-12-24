@@ -2,6 +2,11 @@
 #include <time.h>
 #include <windows.h>
 #define SIZE 20
+#define Left 75
+#define Right 77
+#define Up 72
+#define Down 80
+#define Enter 13
 char MainPlayCard = ' ';
 char CurrentCard = ' ';
 int MainTurn = 0;
@@ -20,8 +25,13 @@ int C2count = 5;
 char Com3[5] = { ' ', ' ', ' ', ' ', ' ' };
 char C3Die = 'X';
 int C3count = 5;
-
+char BeforPlayer = 'p';
 char BeforCard = 'X';
+
+char befordie1 = 'X';
+char befordie2 = 'X';
+char befordie3 = 'X';
+
 
 void Loding(int Num)
 {
@@ -32,6 +42,31 @@ void Loding(int Num)
 		Sleep(1000);
 	}
 	printf("\n");
+}
+
+void SinggleLoding()
+{
+	printf("덱을 섞는중");
+	for (int i = 0; i < 3; i++)
+	{
+		printf(".");
+		Sleep(500);
+	}
+	printf("\n패를 나누는중");
+	for (int i = 0; i < 3; i++)
+	{
+		printf(".");
+		Sleep(500);
+	}
+	printf("\nAI 1[준비완료!]");
+	Sleep(1500);
+	printf("\nAI 2[준비완료!]");
+	Sleep(500);
+	printf("\nAI 3[준비완료!]");
+	Sleep(500);
+	printf("\n게임 준비완료!");
+	Sleep(1000);
+	system("cls");
 }
 
 void Maincard()	//시작시 라이어카드 정하는 함수
@@ -83,6 +118,42 @@ void Dvide() //패 나눠주기
 	DvideCard(Com3, 15, 20);
 }
 
+void LiarKill()
+{
+	if (BeforPlayer == 'P')
+	{
+		printf("당신은 사망했습니다.\n");
+		playerDie = 1;
+		//사망 함수
+	}
+	else if (BeforPlayer == 'A')
+	{
+		printf("AI[1]가 사망했습니다.\n");
+		befordie1 = 'O';
+		befordie2 = 'X';
+		befordie3 = 'X';
+		C1Die = 'O';
+	}
+	else if (BeforPlayer == 'B')
+	{
+		printf("AI[2]가 사망했습니다.\n");
+		C2Die = 'O';
+		befordie3 = 'X';
+		befordie2 = 'O';
+		befordie1 = 'X';
+
+	}
+	else if (BeforPlayer == 'C')
+	{
+		printf("AI[3]가 사망했습니다.\n");
+		C3Die = 'O';
+		befordie3 = 'O';
+		befordie2 = 'X';
+		befordie1 = 'X';
+
+	}
+}
+
 void Com1Turn() //1번 ai턴
 {
 	int AiChoice = rand() % 10;
@@ -96,6 +167,7 @@ void Com1Turn() //1번 ai턴
 			Com1[i] = 'X';
 			C1count = 1;
 			printf("AI가 카드를 냈습니다.\n");
+			BeforPlayer = 'A';
 			break;
 		}
 	}
@@ -104,17 +176,45 @@ void Com1Turn() //1번 ai턴
 	{
 		if (AiChoice <= 50)
 		{
-			printf("AI가 당신을 라이어로 지목했습니다!\n");
-			if (BeforCard != MainPlayCard && BeforCard != 'J')
+			printf("AI가 %c을 라이어로 지목했습니다!\n",BeforPlayer);
+			if (BeforCard != MainPlayCard)
 			{
-				printf("당신은 사망했습니다.\n");
-				playerDie = 1;
-				//사망 함수
+				if (BeforCard == 'J')
+				{
+					printf("AI1가 잘못지명하여 사망했습니다.\n");
+					C1Die = 'O';
+					befordie1 = 'O';
+					befordie2 = 'X';
+					befordie3 = 'X';
+				}
+				else
+				{
+					LiarKill();
+				}
 			}
-			else
+			else if (BeforPlayer == 'C' && befordie3 == 'O')
 			{
-				printf("AI1가 사망했습니다.\n");
+				printf("AI1가 잘못지명하여 사망했습니다.\n");
 				C1Die = 'O';
+				befordie1 = 'O';
+				befordie2 = 'X';
+				befordie3 = 'X';
+			}
+			else if (BeforPlayer == 'B' && befordie2 == 'O')
+			{
+				printf("AI1가 잘못지명하여 사망했습니다.\n");
+				C1Die = 'O';
+				befordie1 = 'O';
+				befordie2 = 'X';
+				befordie3 = 'X';
+			}
+			else if(BeforCard == MainPlayCard || BeforCard == 'J')
+			{
+				printf("AI1가 잘못지명하여 사망했습니다.\n");
+				C1Die = 'O';
+				befordie1 = 'O';
+				befordie2 = 'X';
+				befordie3 = 'X';
 			}
 		}
 		else if (AiChoice >= 51)
@@ -127,6 +227,7 @@ void Com1Turn() //1번 ai턴
 					CurrentCard = Com1[i];
 					Com1[i] = 'X';
 					printf("AI가 카드를 냈습니다.\n");
+					BeforPlayer = 'A';
 					break;
 				}
 			}
@@ -149,6 +250,7 @@ void Com2Turn() //2번 ai턴
 			Com2[i] = 'X';
 			C2count = 1;
 			printf("AI가 카드를 냈습니다.\n");
+			BeforPlayer = 'B';
 			break;
 		}
 	}
@@ -157,56 +259,40 @@ void Com2Turn() //2번 ai턴
 	{
 		if (AiChoice <= 50)
 		{
-			printf("AI2가 Com을(를) 라이어로 지목했습니다!\n");
-			if (BeforCard != MainPlayCard && BeforCard != 'J')
+			printf("AI2가 라이어를 지목했습니다!\n");
+			if (BeforCard != MainPlayCard)
 			{
-				if (C1Die != 'O')//c1이 죽지 않았을 때
+				if (BeforCard == 'J')
 				{
-					printf("Com1은 사망했습니다.\n");
-					Loding(2);
-					for (int i = 10; i < 15; i++)
-					{
-						if (Com2[i] != 'X')
-						{
-							BeforCard = CurrentCard;
-							CurrentCard = Com2[i];
-							Com2[i] = 'X';
-							printf("AI가 카드를 냈습니다.\n");
-							break;
-						}
-					}
-					//사망 함수
-					C1Die = 'O';
+					printf("Com2가 잘못 지명하여 사망했습니다.\n");
+					C2Die = 'O';
+					befordie1 = 'X';
+					befordie2 = 'O';
+					befordie3 = 'X';
 				}
-				else if (C1Die == 'O' && C3Die != 'O')//C1은 죽고 C3가 죽지않았을 때
+				else
 				{
-					printf("Com3은 사망했습니다.\n");
-					Loding(2);
-					for (int i = 10; i < 15; i++)
-					{
-						if (Com2[i] != 'X')
-						{
-							BeforCard = CurrentCard;
-							CurrentCard = Com2[i];
-							Com2[i] = 'X';
-							printf("AI가 카드를 냈습니다.\n");
-							break;
-						}
-					}
-					//사망 함수
-					C3Die = 'O';
-				}
-				else if (C1Die == 'O' && C3Die == 'O')//C1도 죽고 C3도 죽었을 때
-				{
-					printf("당신은 사망했습니다.");
-					playerDie = 1;
+					LiarKill();
 				}
 			}
-			else
+			else if (BeforPlayer == 'A' && befordie1 == 'O')
 			{
-				printf("Com2가 사망했습니다.\n");
+				printf("Com2가 잘못 지명하여 사망했습니다.\n");
 				C2Die = 'O';
+				befordie1 = 'X';
+				befordie2 = 'O';
+				befordie3 = 'X';
 			}
+			else if (BeforPlayer == 'C' && befordie3 == 'O')
+			{
+				printf("Com2가 잘못 지명하여 사망했습니다.\n");
+				C2Die = 'O';
+				befordie1 = 'X';
+				befordie2 = 'O';
+				befordie3 = 'X';
+			}
+		
+			
 		}
 		else if (AiChoice >= 51)
 		{
@@ -218,6 +304,7 @@ void Com2Turn() //2번 ai턴
 					CurrentCard = Com2[i];
 					Com2[i] = 'X';
 					printf("AI가 카드를 냈습니다.\n");
+					BeforPlayer = 'B';
 					break;
 				}
 			}
@@ -240,6 +327,7 @@ void Com3Turn() //3번 ai턴
 			Com3[i] = 'X';
 			C3count = 1;
 			printf("AI가 카드를 냈습니다.\n");
+			BeforPlayer = 'C';
 			break;
 		}
 	}
@@ -251,53 +339,44 @@ void Com3Turn() //3번 ai턴
 			printf("AI3가 Com을(를) 라이어로 지목했습니다!\n");
 			if (BeforCard != MainPlayCard && BeforCard != 'J')
 			{
-				if (C2Die != 'O') //C2가 살아있을 때
+				if (BeforCard == 'J')
 				{
-					printf("Com2은 사망했습니다.\n");
-					Loding(3);
-					for (int i = 15; i < 20; i++)
-					{
-						if (Com3[i] != 'X')
-						{
-							BeforCard = CurrentCard;
-							CurrentCard = Com3[i];
-							Com3[i] = 'X';
-							printf("AI가 카드를 냈습니다.\n");
-							break;
-						}
-					}
-					//사망 함수
-					C2Die = 'O';
+					printf("Com3가 사망했습니다.\n");
+					C3Die = 'O';
+					befordie1 = 'X';
+					befordie2 = 'X';
+					befordie3 = 'O';
 				}
-				else if (C2Die == 'O' && C1Die  == 'O') //C2가 죽고 C1이 살아있을 때
+				else
 				{
-					printf("Com1은 사망했습니다.\n");
-					Loding(3);
-					for (int i = 15; i < 20; i++)
-					{
-						if (Com3[i] != 'X')
-						{
-							BeforCard = CurrentCard;
-							CurrentCard = Com3[i];
-							Com3[i] = 'X';
-							printf("AI가 카드를 냈습니다.\n");
-							break;
-						}
-					}
-					//사망 함수
-					C1Die = 'O';
-				}
-				else if (C2Die == 'O' && C1Die == 'O') //C1 C2둘다 죽고 당신이 살아있을 떄
-				{
-					printf("당신은 사망했습니다.\n");
-					playerDie = 1;
+					LiarKill();
 				}
 			}
-			else//이전 플레이어가 라이어가 아닐때
+			else if (BeforPlayer == 'A' && befordie1 == 'O')
 			{
 				printf("Com3가 사망했습니다.\n");
 				C3Die = 'O';
+				befordie1 = 'X';
+				befordie2 = 'X';
+				befordie3 = 'O';
 			}
+			else if (BeforPlayer == 'B' && befordie2 == 'O')
+			{
+				printf("Com3가 사망했습니다.\n");
+				C3Die = 'O';
+				befordie1 = 'X';
+				befordie2 = 'X';
+				befordie3 = 'O';
+			}
+			else if (BeforCard == MainPlayCard || BeforCard == 'J')
+			{
+				printf("Com3가 사망했습니다.\n");
+				C3Die = 'O';
+				befordie1 = 'X';
+				befordie2 = 'X';
+				befordie3 = 'O';
+			}
+
 		}
 		else if (AiChoice >= 51)
 		{
@@ -309,6 +388,7 @@ void Com3Turn() //3번 ai턴
 					CurrentCard = Com3[i];
 					Com3[i] = 'X';
 					printf("AI가 카드를 냈습니다.\n");
+					BeforPlayer = 'C';
 					break;
 				}
 			}
@@ -324,19 +404,19 @@ void Turn()	//플레이어 턴
 	int Mycard = 0;
 	int count = 0;
 	printf("Main Card : %c\n\n\n", MainPlayCard);
-	printf(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n");
-	printf("ㅣ                      ㅣ\n");
-	printf("ㅣ       당신의 패      ㅣ\n");
-	printf("ㅣ                      ㅣ\n");
-	printf(" ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n");
-	printf("---------------------------\n\n");
+	printf("            ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n");
+	printf("           ㅣ                      ㅣ\n");
+	printf("           ㅣ       당신의 패      ㅣ\n");
+	printf("           ㅣ                      ㅣ\n");
+	printf("            ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n");
+	printf("--------------------------------------------------------\n\n");
 	for (int i = 0; i < Pcount; i++)
 	{
 		printf("%d: [%c]  ",i,Player[i]);
 	}
 	printf(" 5: 라이어 지목\n");
-	printf("\n---------------------------\n\n");
-	printf("무엇을 내겠습니까?\n");
+	printf("\n--------------------------------------------------------\n\n");
+	printf("          무엇을 내겠습니까?\n");
 	while (1)
 	{
 		scanf_s("%d", &Choice);
@@ -348,23 +428,28 @@ void Turn()	//플레이어 턴
 				//지목 후 
 				if (BeforCard != MainPlayCard && BeforCard !='J')
 				{
-					if (C2Die != 'O')
-					{
-						printf("Com2은 사망했습니다!");
-						C2Die = 'O';
-					}
-					else if (C2Die == 'O' && C1Die != 'O')
-					{
-						printf("Com1은 사망했습니다!");
-						C1Die = 'O';
-					}
-					else if (C2Die == 'O' && C1Die == 'O')
-					{
-						printf("Com3은 사망했습니다!");
-						C3Die = 'O';
-					}
+					LiarKill();
+					printf("          한번 더 선택해주세요.\n");
 				}
-				else
+				else if(BeforPlayer == 'A' && befordie1 == 'O')
+				{
+					printf("\n\n당신은 잘못 지목하였습니다.\n\n");
+					playerDie = 1;
+					return 0;
+				}
+				else if (BeforPlayer == 'B' && befordie2 == 'O')
+				{
+					printf("\n\n당신은 잘못 지목하였습니다.\n\n");
+					playerDie = 1;
+					return 0;
+				}
+				else if (BeforPlayer == 'C' && befordie3 == 'O')
+				{
+					printf("\n\n당신은 잘못 지목하였습니다.\n\n");
+					playerDie = 1;
+					return 0;
+				}
+				else if (BeforCard == MainPlayCard || BeforCard == 'J')
 				{
 					printf("\n\n당신은 잘못 지목하였습니다.\n\n");
 					playerDie = 1;
@@ -389,6 +474,7 @@ void Turn()	//플레이어 턴
 				}
 				Player[Choice] = 'X';
 				MainTurn++;
+				BeforPlayer = 'P';
 				break;
 			}
 			else
@@ -401,8 +487,9 @@ void Turn()	//플레이어 턴
 	Choice = 0;
 }
 
-void LiveTurn()
+void SinggleGame()
 {
+	SinggleLoding();
 	while (playerDie == 0)
 	{
 		Turn();
@@ -427,12 +514,100 @@ void LiveTurn()
 	}
 }
 
+void MultyGame()
+{
+	//제작중
+	printf("제작중입니다.\n");
+	Sleep(1000);
+}
+
+void ChoicePlayers()
+{
+	int input = 0;
+	int Num = 0;
+	printf("             -------------------------------------------\n\n\n\n\n                             Liar's Bar\n\n\n\n\n");
+	printf("             -------------------------------------------\n\n");
+	printf("                               - 싱글 -\n\n");
+	printf("                                  2인\n\n");
+	printf("                                  4인\n\n");
+	while (1)
+	{
+		
+		input = getch();
+		if (input == -32)
+		{
+			input = _getch();
+		}
+		switch (input)
+		{
+		case Down:
+			Num++;
+			if (Num >= 3) Num = 2;
+			system("cls");
+			printf("             -------------------------------------------\n\n\n\n\n                             Liar's Bar\n\n\n\n\n");
+			printf("             -------------------------------------------\n\n");
+			break;
+		case Up:
+			Num--;
+			if (Num <= -1) Num = 0;
+			system("cls");
+			printf("             -------------------------------------------\n\n\n\n\n                             Liar's Bar\n\n\n\n\n");
+			printf("             -------------------------------------------\n\n");
+			break;
+		case Enter:
+			if (Num == 0)
+			{
+				system("cls");
+				SinggleGame();
+				printf("이전 카드는 [%c]입니다.", BeforCard);
+				return 0;
+			}
+			else if (Num == 1)
+			{	
+				MultyGame();
+			}
+			else if (Num == 2)
+			{
+				MultyGame();
+			}
+		default:
+			system("cls");
+			printf("             -------------------------------------------\n\n\n\n\n                             Liar's Bar\n\n\n\n\n");
+			printf("             -------------------------------------------\n\n");
+			break;
+		}
+
+		if (Num == 0)
+		{
+			printf("                               - 싱글 -\n\n");
+			printf("                                  2인\n\n");
+			printf("                                  4인\n\n");
+		}
+		else if (Num == 1)
+		{
+			printf("                                 싱글\n\n");
+			printf("                                - 2인 -\n\n");
+			printf("                                  4인\n\n");
+		}
+		else
+		{
+			printf("                                 싱글\n\n");
+			printf("                                  2인\n\n");
+			printf("                                - 4인 -\n\n");
+		}
+	}
+	
+
+}
+
+
+
 int main()
 {	
 	srand(time(NULL));
 	Maincard();
 	DeakShp(HomeDeak); //홈덱을 랜덤으로 섞음
 	Dvide();
-	LiveTurn();
+	ChoicePlayers();
 	return 0;
 }

@@ -1,5 +1,11 @@
 ﻿  MainGame.c
-C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(371,6): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(425,4): warning C4098: 'LiveTurn': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(432,8): warning C4244: '함수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Liar's bar.vcxproj -> C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Program\x64\Debug\Liar's bar.exe
+C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Liar's bar\MainGame.c(412,14): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Liar's bar\MainGame.c(418,14): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Liar's bar\MainGame.c(424,14): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Liar's bar\MainGame.c(431,14): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Liar's bar\MainGame.c(487,12): warning C4098: 'SinggleGame': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Liar's bar\MainGame.c(511,11): warning C4013: 'getch'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Liar's bar\MainGame.c(514,12): warning C4013: '_getch'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Liar's bar\MainGame.c(537,13): warning C4098: 'ChoicePlayers': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Liar's bar\MainGame.c(581,8): warning C4244: '함수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Liar's bar.vcxproj -> C:\Users\Administrator\Desktop\Game Project\C-CONSOL-GAME\Program\x64\Debug\Liar's bar.exe
