@@ -31,7 +31,22 @@ char BeforCard = 'X';
 char befordie1 = 'X';
 char befordie2 = 'X';
 char befordie3 = 'X';
+char befordie4 = 'X';
 
+
+char Mp1[5] = { ' ',' ',' ',' ',' ' };
+char Mp2[5] = { ' ',' ',' ',' ',' ' };
+char Mp3[5] = { ' ',' ',' ',' ',' ' };
+char Mp4[5] = { ' ',' ',' ',' ',' ' };
+
+char playerCount = 4;
+
+char P1Die = 'X';
+char P2Die = 'X';
+char P3Die = 'X';
+char P4Die = 'X';
+
+char BeforDiePlayer = ' ';
 
 void Loding(int Num)
 {
@@ -108,6 +123,26 @@ void DvideCard(char tile[], int Min, int Max) //패 나누는 함수
 	{
 		tile[i] = HomeDeak[i];
 	}
+}
+
+void MultyLoding()
+{
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n                              굉장히 쓸대없지만 바로넘어가면 심심하니 있는 로딩창");
+	for (int i = 0; i < 3; i++)
+	{
+		printf(".");
+		Sleep(800);
+	}
+	Sleep(1000);
+	system("cls");
+}
+
+void MpDvide()
+{
+	DvideCard(Mp1, 0, 5);
+	DvideCard(Mp2, 5, 10);
+	DvideCard(Mp3, 10, 15);
+	DvideCard(Mp4, 15,20);
 }
 
 void Dvide() //패 나눠주기
@@ -426,10 +461,19 @@ void Turn()	//플레이어 턴
 			{
 				printf("라이어 지목\n");
 				//지목 후 
-				if (BeforCard != MainPlayCard && BeforCard !='J')
+				if (BeforCard != MainPlayCard)
 				{
-					LiarKill();
-					printf("          한번 더 선택해주세요.\n");
+					if (BeforCard == 'J')
+					{
+						printf("\n\n당신은 잘못 지목하였습니다.\n\n");
+						playerDie = 1;
+						return 0;
+					}
+					else if(C1Die != 'O'&& C2Die != 'O'&& C3Die != 'O')
+					{
+						LiarKill();
+						printf("          한번 더 선택해주세요.\n");
+					}
 				}
 				else if(BeforPlayer == 'A' && befordie1 == 'O')
 				{
@@ -467,11 +511,7 @@ void Turn()	//플레이어 턴
 		{
 			if (Player[Choice] != 'X')
 			{
-				CurrentCard = Player[Choice];
-				if (MainTurn != 0)
-				{
-					BeforCard = Player[Choice];
-				}
+				BeforCard = Player[Choice];
 				Player[Choice] = 'X';
 				MainTurn++;
 				BeforPlayer = 'P';
@@ -514,11 +554,211 @@ void SinggleGame()
 	}
 }
 
+void MultyPlayerDie(char Players)
+{
+	if (Players == 'A')
+	{
+		
+		P1Die = 'O';
+		BeforDiePlayer = 'A';
+	}
+	else if (Players == 'B')
+	{
+		
+		P2Die = 'O';
+		BeforDiePlayer = 'B';
+
+	}
+	else if (Players == 'C')
+	{
+		
+		P3Die = 'O';
+		BeforDiePlayer = 'C';
+
+	}
+	else if (Players == 'D')
+	{
+		
+		P4Die = 'O';
+		BeforDiePlayer = 'D';
+	}
+}
+
+void MultyLiarkill(char Players)
+{
+	if (BeforPlayer == 'A')
+	{
+		printf("[A]플레이어는 라이어가 맞았습니다!\n");
+		P1Die = 'O';
+		BeforDiePlayer = 'A';
+	}
+	else if (BeforPlayer == 'B')
+	{
+		printf("[B]플레이어는 라이어가 맞았습니다!\n");
+		P2Die = 'O';
+		BeforDiePlayer = 'B';
+
+	}
+	else if (BeforPlayer == 'C')
+	{
+		printf("[C]플레이어는 라이어가 맞았습니다!\n");
+		P3Die = 'O';
+		BeforDiePlayer = 'C';
+
+	}
+	else if (BeforPlayer == 'D')
+	{
+		printf("[D]플레이어는 라이어가 맞았습니다!\n");
+		P4Die = 'O';
+		BeforDiePlayer = 'D';
+	}
+}
+
+void MultyPlayGame(char Players[],char IndexPlayer,int min, int max) //필요한 정보 : 플레이어의 패, 플레이어의 순서
+{
+	char T = 0;
+	system("cls");
+	printf("[%c] Player의 턴\n\n", IndexPlayer);
+	int Choice = 0;
+	printf("Main Card : %c\n\n\n", MainPlayCard);
+	printf("            ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n");
+	printf("           ㅣ                      ㅣ\n");
+	printf("           ㅣ   [%c]플레이어의 패   ㅣ\n",IndexPlayer);
+	printf("           ㅣ                      ㅣ\n");
+	printf("            ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n\n");
+	printf("--------------------------------------------------------\n\n");
+	for (int i = min; i < max; i++)
+	{
+		printf("%d: [%c]  ", i, Players[i]);
+	}
+	printf(" 99 : 라이어 지목\n");
+	printf("\n--------------------------------------------------------\n\n");
+	printf("          무엇을 내겠습니까?\n");
+	while (1)
+	{
+		scanf_s("%d", &Choice);
+		if (Choice == 99)
+		{
+			if (MainTurn == 0)
+			{
+				printf("아직 라이어를 지목할 수 없습니다.\n");
+			}
+			else if (BeforCard != MainPlayCard)
+			{
+				if (BeforDiePlayer == BeforPlayer)
+				{
+					printf("방금 라이어가 지목당해서 죽었어요!\n");
+				}
+				else if (BeforCard == 'J')
+				{
+					printf("잘못 지목하여 사망하셨습니다!\n");
+					MultyPlayerDie(IndexPlayer);
+					Sleep(1000);
+					system("cls");
+					printf("다음 플레이어분은 엔터를 눌러주세요\n");
+					T = _getch();
+					return 0;
+				}
+				else if(BeforDiePlayer != BeforPlayer)
+				{
+					printf("[%c] 플레이어가 라이어로 지목당하였습니다!\n",IndexPlayer);
+					MultyLiarkill(IndexPlayer);
+					T = _getch();
+					system("cls");
+					printf("엔터를 눌러 넘어가주세요.\n");
+					T = _getch();
+					return 0;
+				}
+				
+				
+			}
+			else
+			{
+				printf("잘못 지목하여 사망하셨습니다!\n");
+				printf("[%c]플레이어가 낸 카드는...[%c]입니다!\n",BeforPlayer,BeforCard);
+				MultyPlayerDie(IndexPlayer);
+				T = _getch();
+				system("cls");
+				printf("다음 플레이어분은 엔터를 눌러주세요\n");
+				T = _getch();
+				return 0;
+			}
+		}
+		else if (Choice < min || Choice > max)
+		{
+			printf("잘못 선택하셨어요! 다시 고르세요.\n");
+		}
+		else
+		{
+			if (Players[Choice] != 'X')
+			{
+				BeforCard = Players[Choice];
+				Players[Choice] = 'X';
+				MainTurn++;
+				BeforPlayer = IndexPlayer; //이전 플레이어 
+				break;
+			}
+			else
+			{
+				printf("다시 선택해 주세요.\n");
+			}
+		}
+
+	}
+	
+	Choice = 0;
+	system("cls");
+	printf("다음 플레이어분은 엔터를 눌러주세요\n");
+	T = _getch();
+}
+
+
 void MultyGame()
 {
-	//제작중
-	printf("제작중입니다.\n");
-	Sleep(1000);
+	MultyLoding();
+	while (1)
+	{
+		if (befordie1 != 'O')
+		{
+			MultyPlayGame(Mp1, 'A', 0, 5);
+		}
+		if (befordie2 != 'O')
+		{
+			MultyPlayGame(Mp2, 'B', 5, 10);
+		}
+		if (befordie3 != 'O')
+		{
+			MultyPlayGame(Mp3, 'C', 10, 15);
+		}
+		if (befordie4 != 'O')
+		{
+			MultyPlayGame(Mp4, 'D', 15, 20);
+		}
+		if (playerCount <= 1)
+		{
+			if (P1Die != 'O')
+			{
+				printf("%c 플레이어가 승리하였습니다!.\n",'A');
+
+			}
+			else if (P2Die != 'O')
+			{
+				printf("%c 플레이어가 승리하였습니다!.\n", 'B');
+
+			}
+			else if (P3Die != 'O')
+			{
+				printf("%c 플레이어가 승리하였습니다!.\n", 'C');
+
+			}
+			else
+			{
+				printf("%c 플레이어가 승리하였습니다!.\n",'D');
+			}
+			return 0;
+		}
+	}
+	
 }
 
 void ChoicePlayers()
@@ -529,6 +769,7 @@ void ChoicePlayers()
 	printf("             -------------------------------------------\n\n");
 	printf("                               - 싱글 -\n\n");
 	printf("                                  2인\n\n");
+	printf("                                  3인\n\n");
 	printf("                                  4인\n\n");
 	while (1)
 	{
@@ -542,14 +783,14 @@ void ChoicePlayers()
 		{
 		case Down:
 			Num++;
-			if (Num >= 3) Num = 2;
+			if (Num >= 4) Num = 0;
 			system("cls");
 			printf("             -------------------------------------------\n\n\n\n\n                             Liar's Bar\n\n\n\n\n");
 			printf("             -------------------------------------------\n\n");
 			break;
 		case Up:
 			Num--;
-			if (Num <= -1) Num = 0;
+			if (Num <= -1) Num = 3;
 			system("cls");
 			printf("             -------------------------------------------\n\n\n\n\n                             Liar's Bar\n\n\n\n\n");
 			printf("             -------------------------------------------\n\n");
@@ -564,10 +805,19 @@ void ChoicePlayers()
 			}
 			else if (Num == 1)
 			{	
-				MultyGame();
+				printf("아직 업데이트 중입니다.");
+				Sleep(1000);
+				system("cls");
 			}
 			else if (Num == 2)
 			{
+				printf("아직 업데이트 중입니다.");
+				Sleep(1000);
+				system("cls");
+			}
+			else if (Num == 3)
+			{
+				system("cls");
 				MultyGame();
 			}
 		default:
@@ -581,18 +831,28 @@ void ChoicePlayers()
 		{
 			printf("                               - 싱글 -\n\n");
 			printf("                                  2인\n\n");
+			printf("                                  3인\n\n");
 			printf("                                  4인\n\n");
 		}
 		else if (Num == 1)
 		{
 			printf("                                 싱글\n\n");
 			printf("                                - 2인 -\n\n");
+			printf("                                  3인\n\n");
 			printf("                                  4인\n\n");
 		}
-		else
+		else if (Num == 2)
 		{
 			printf("                                 싱글\n\n");
 			printf("                                  2인\n\n");
+			printf("                                - 3인 -\n\n");
+			printf("                                  4인\n\n");
+		}
+		else if(Num ==3)
+		{
+			printf("                                 싱글\n\n");
+			printf("                                  2인\n\n");
+			printf("                                  3인\n\n");
 			printf("                                - 4인 -\n\n");
 		}
 	}
@@ -608,6 +868,7 @@ int main()
 	Maincard();
 	DeakShp(HomeDeak); //홈덱을 랜덤으로 섞음
 	Dvide();
+	MpDvide();
 	ChoicePlayers();
 	return 0;
 }
