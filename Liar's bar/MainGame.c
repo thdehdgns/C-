@@ -7,6 +7,26 @@
 #define Up 72
 #define Down 80
 #define Enter 13
+enum TextColor
+{
+	Black,
+	DARK_Blue,
+	DARK_GREEN,
+	DARK_SKY_BLUE,
+	DARK_RED,
+	DARK_PURPLE,
+	DARK_YELLOW,
+	GRAY,
+	DARK_GRAY,
+	BLUE,
+	GREEN,
+	SKY_BLUE,
+	RED,
+	PURPLE,
+	YELLOW,
+	WHITE
+};
+int Number = 15;
 char MainPlayCard = ' ';
 char CurrentCard = ' ';
 int MainTurn = 0;
@@ -39,7 +59,7 @@ char Mp2[5] = { ' ',' ',' ',' ',' ' };
 char Mp3[5] = { ' ',' ',' ',' ',' ' };
 char Mp4[5] = { ' ',' ',' ',' ',' ' };
 
-char playerCount = 4;
+int playerCount = 4;
 
 char P1Die = 'X';
 char P2Die = 'X';
@@ -127,7 +147,7 @@ void DvideCard(char tile[], int Min, int Max) //패 나누는 함수
 
 void MultyLoding()
 {
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n                              굉장히 쓸대없지만 바로넘어가면 심심하니 있는 로딩창");
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n                    굉장히 쓸대없지만 바로넘어가면 심심하니 있는 로딩창");
 	for (int i = 0; i < 3; i++)
 	{
 		printf(".");
@@ -561,12 +581,16 @@ void MultyPlayerDie(char Players)
 		
 		P1Die = 'O';
 		BeforDiePlayer = 'A';
+		playerCount--;
+		BeforPlayer = 'A';
 	}
 	else if (Players == 'B')
 	{
 		
 		P2Die = 'O';
 		BeforDiePlayer = 'B';
+		playerCount--;
+		BeforPlayer = 'B';
 
 	}
 	else if (Players == 'C')
@@ -574,6 +598,8 @@ void MultyPlayerDie(char Players)
 		
 		P3Die = 'O';
 		BeforDiePlayer = 'C';
+		playerCount--;
+		BeforPlayer = 'C';
 
 	}
 	else if (Players == 'D')
@@ -581,6 +607,9 @@ void MultyPlayerDie(char Players)
 		
 		P4Die = 'O';
 		BeforDiePlayer = 'D';
+		playerCount--;
+		BeforPlayer = 'D';
+
 	}
 }
 
@@ -591,12 +620,17 @@ void MultyLiarkill(char Players)
 		printf("[A]플레이어는 라이어가 맞았습니다!\n");
 		P1Die = 'O';
 		BeforDiePlayer = 'A';
+		playerCount--;
+		BeforPlayer = 'A';
+
 	}
 	else if (BeforPlayer == 'B')
 	{
 		printf("[B]플레이어는 라이어가 맞았습니다!\n");
 		P2Die = 'O';
 		BeforDiePlayer = 'B';
+		playerCount--;
+		BeforPlayer = 'B';
 
 	}
 	else if (BeforPlayer == 'C')
@@ -604,6 +638,8 @@ void MultyLiarkill(char Players)
 		printf("[C]플레이어는 라이어가 맞았습니다!\n");
 		P3Die = 'O';
 		BeforDiePlayer = 'C';
+		playerCount--;
+		BeforPlayer = 'C';
 
 	}
 	else if (BeforPlayer == 'D')
@@ -611,6 +647,8 @@ void MultyLiarkill(char Players)
 		printf("[D]플레이어는 라이어가 맞았습니다!\n");
 		P4Die = 'O';
 		BeforDiePlayer = 'D';
+		playerCount--;
+		BeforPlayer = 'D';
 	}
 }
 
@@ -643,7 +681,7 @@ void MultyPlayGame(char Players[],char IndexPlayer,int min, int max) //필요한 정
 			{
 				printf("아직 라이어를 지목할 수 없습니다.\n");
 			}
-			else if (BeforCard != MainPlayCard)
+			else if (BeforCard != MainPlayCard || BeforDiePlayer == BeforPlayer)
 			{
 				if (BeforDiePlayer == BeforPlayer)
 				{
@@ -710,6 +748,7 @@ void MultyPlayGame(char Players[],char IndexPlayer,int min, int max) //필요한 정
 	system("cls");
 	printf("다음 플레이어분은 엔터를 눌러주세요\n");
 	T = _getch();
+	return 0;
 }
 
 
@@ -718,19 +757,19 @@ void MultyGame()
 	MultyLoding();
 	while (1)
 	{
-		if (befordie1 != 'O')
+		if (P1Die != 'O')
 		{
 			MultyPlayGame(Mp1, 'A', 0, 5);
 		}
-		if (befordie2 != 'O')
+		if (P2Die != 'O')
 		{
 			MultyPlayGame(Mp2, 'B', 5, 10);
 		}
-		if (befordie3 != 'O')
+		if (P3Die != 'O')
 		{
 			MultyPlayGame(Mp3, 'C', 10, 15);
 		}
-		if (befordie4 != 'O')
+		if (P4Die != 'O')
 		{
 			MultyPlayGame(Mp4, 'D', 15, 20);
 		}
@@ -738,22 +777,30 @@ void MultyGame()
 		{
 			if (P1Die != 'O')
 			{
+				system("cls");
 				printf("%c 플레이어가 승리하였습니다!.\n",'A');
+				Sleep(1000);
 
 			}
 			else if (P2Die != 'O')
 			{
+				system("cls");
 				printf("%c 플레이어가 승리하였습니다!.\n", 'B');
+				Sleep(1000);
 
 			}
 			else if (P3Die != 'O')
 			{
+				system("cls");
 				printf("%c 플레이어가 승리하였습니다!.\n", 'C');
+				Sleep(1000);
 
 			}
-			else
+			else if (P4Die != 'O')
 			{
+				system("cls");
 				printf("%c 플레이어가 승리하였습니다!.\n",'D');
+				Sleep(1000);
 			}
 			return 0;
 		}
@@ -761,16 +808,108 @@ void MultyGame()
 	
 }
 
+
+void GameReset()
+{
+	HomeDeak[SIZE] ='Q','Q','Q','Q','Q','Q',
+					'K','K','K','K','K','K',
+					'A','A','A','A','A','A','J','J'  ;
+
+    Player[5] =  ' ', ' ', ' ', ' ', ' ' ;
+	Pcount = 5;
+	playerDie = 0;
+	Com1[5] =  ' ', ' ', ' ', ' ', ' ' ;
+	C1Die = 'X';
+	C1count = 5;
+	Com2[5] =  ' ', ' ', ' ', ' ', ' ' ;
+	C2Die = 'X';
+	C2count = 5;
+	Com3[5] =  ' ', ' ', ' ', ' ', ' ' ;
+	C3Die = 'X';
+	C3count = 5;
+	BeforPlayer = 'p';
+	BeforCard = 'X';
+	MainTurn = 0;
+	befordie1 = 'X';
+	befordie2 = 'X';
+	befordie3 = 'X';
+	befordie4 = 'X';
+
+	Mp1[5] =  ' ',' ',' ',' ',' ' ;
+	Mp2[5] =  ' ',' ',' ',' ',' ' ;
+	Mp3[5] =  ' ',' ',' ',' ',' ' ;
+	Mp4[5] =  ' ',' ',' ',' ',' ' ;
+
+	playerCount = 4;
+
+	P1Die = 'X';
+	P2Die = 'X';
+	P3Die = 'X';
+	P4Die = 'X';
+
+	BeforDiePlayer = ' ';
+
+	DeakShp(HomeDeak); //홈덱을 랜덤으로 섞음
+	Dvide();
+	MpDvide();
+	Maincard();
+}
+void Load(const char* filename)
+{
+	char buffer[10000] = { 0, };
+	FILE* file = fopen(filename, "r");
+	fread(buffer, 1, 10000, file);
+	printf("%s", buffer);
+	fclose(file);
+}
+void Setting()
+{
+	enum TextColor color = 0;
+	int input = 0;
+	while (1)
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Number);
+		Load("Color.txt");
+		printf("엔터를 눌러 적용하기.");
+		input = getch();
+		if (input == -32)
+		{
+			input = _getch();
+		}
+		switch (input)
+		{
+		case Down:
+			Number--;
+			if (Number <= -1) Number = 15;
+			system("cls");
+			break;
+		case Up:
+			Number++;
+			if (Number >= 15) Number = 0;
+			system("cls");
+			break;
+		case Enter:
+			system("cls");
+			return 0;
+		default:
+			system("cls");
+			break;
+		}
+	}
+}
+
 void ChoicePlayers()
 {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Number);
 	int input = 0;
 	int Num = 0;
 	printf("             -------------------------------------------\n\n\n\n\n                             Liar's Bar\n\n\n\n\n");
 	printf("             -------------------------------------------\n\n");
 	printf("                               - 싱글 -\n\n");
-	printf("                                  2인\n\n");
-	printf("                                  3인\n\n");
-	printf("                                  4인\n\n");
+	printf("                                 2 인\n\n");
+	printf("                                 3 인\n\n");
+	printf("                                 4 인\n\n");
+	printf("                                 설정\n\n");
 	while (1)
 	{
 		
@@ -783,14 +922,14 @@ void ChoicePlayers()
 		{
 		case Down:
 			Num++;
-			if (Num >= 4) Num = 0;
+			if (Num >= 5) Num = 0;
 			system("cls");
 			printf("             -------------------------------------------\n\n\n\n\n                             Liar's Bar\n\n\n\n\n");
 			printf("             -------------------------------------------\n\n");
 			break;
 		case Up:
 			Num--;
-			if (Num <= -1) Num = 3;
+			if (Num <= -1) Num = 4;
 			system("cls");
 			printf("             -------------------------------------------\n\n\n\n\n                             Liar's Bar\n\n\n\n\n");
 			printf("             -------------------------------------------\n\n");
@@ -798,6 +937,7 @@ void ChoicePlayers()
 		case Enter:
 			if (Num == 0)
 			{
+				GameReset();
 				system("cls");
 				SinggleGame();
 				printf("이전 카드는 [%c]입니다.", BeforCard);
@@ -806,19 +946,25 @@ void ChoicePlayers()
 			else if (Num == 1)
 			{	
 				printf("아직 업데이트 중입니다.");
-				Sleep(1000);
+				Sleep(500);
 				system("cls");
 			}
 			else if (Num == 2)
 			{
 				printf("아직 업데이트 중입니다.");
-				Sleep(1000);
+				Sleep(500);
 				system("cls");
 			}
 			else if (Num == 3)
 			{
+				GameReset();
 				system("cls");
 				MultyGame();
+			}
+			else if (Num == 4)
+			{
+				system("cls");
+				Setting();
 			}
 		default:
 			system("cls");
@@ -830,30 +976,45 @@ void ChoicePlayers()
 		if (Num == 0)
 		{
 			printf("                               - 싱글 -\n\n");
-			printf("                                  2인\n\n");
-			printf("                                  3인\n\n");
-			printf("                                  4인\n\n");
+			printf("                                 2 인\n\n");
+			printf("                                 3 인\n\n");
+			printf("                                 4 인\n\n");
+			printf("                                 설정\n\n");
 		}
 		else if (Num == 1)
 		{
 			printf("                                 싱글\n\n");
-			printf("                                - 2인 -\n\n");
-			printf("                                  3인\n\n");
-			printf("                                  4인\n\n");
+			printf("                               - 2 인 -\n\n");
+			printf("                                 3 인\n\n");
+			printf("                                 4 인\n\n");
+			printf("                                 설정\n\n");
 		}
 		else if (Num == 2)
 		{
 			printf("                                 싱글\n\n");
-			printf("                                  2인\n\n");
-			printf("                                - 3인 -\n\n");
-			printf("                                  4인\n\n");
+			printf("                                 2 인\n\n");
+			printf("                               - 3 인 -\n\n");
+			printf("                                 4 인\n\n");
+			printf("                                 설정\n\n");
+
 		}
 		else if(Num ==3)
 		{
 			printf("                                 싱글\n\n");
-			printf("                                  2인\n\n");
-			printf("                                  3인\n\n");
-			printf("                                - 4인 -\n\n");
+			printf("                                 2 인\n\n");
+			printf("                                 3 인\n\n");
+			printf("                               - 4 인 -\n\n");
+			printf("                                 설정\n\n");
+
+		}
+		else if (Num == 4)
+		{
+			printf("                                 싱글\n\n");
+			printf("                                 2 인\n\n");
+			printf("                                 3 인\n\n");
+			printf("                                 4 인\n\n");
+			printf("                               - 설정 -\n\n");
+
 		}
 	}
 	
@@ -864,11 +1025,8 @@ void ChoicePlayers()
 
 int main()
 {	
+	
 	srand(time(NULL));
-	Maincard();
-	DeakShp(HomeDeak); //홈덱을 랜덤으로 섞음
-	Dvide();
-	MpDvide();
 	ChoicePlayers();
 	return 0;
 }
