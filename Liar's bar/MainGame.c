@@ -7,6 +7,7 @@
 #define Up 72
 #define Down 80
 #define Enter 13
+#define Tip 7
 enum TextColor
 {
 	Black,
@@ -53,18 +54,35 @@ char befordie2 = 'X';
 char befordie3 = 'X';
 char befordie4 = 'X';
 
+int Rusian = 0;
+
+
 
 char Mp1[5] = { ' ',' ',' ',' ',' ' };
 char Mp2[5] = { ' ',' ',' ',' ',' ' };
 char Mp3[5] = { ' ',' ',' ',' ',' ' };
 char Mp4[5] = { ' ',' ',' ',' ',' ' };
 
+char MpB1[6] = { 'X','X','X','X','X' ,'X'};
+char MpB2[6] = { 'X','X','X','X','X' ,'X' };
+char MpB3[6] = { 'X','X','X','X','X' ,'X' };
+char MpB4[6] = { 'X','X','X','X','X' ,'X' };
+
 int playerCount = 4;
+int Acount = 0;
+int Bcount = 0;
+int Ccount = 0;
+int Dcount = 0;
+
 
 char P1Die = 'X';
 char P2Die = 'X';
 char P3Die = 'X';
 char P4Die = 'X';
+
+
+
+
 
 char BeforDiePlayer = ' ';
 
@@ -124,6 +142,39 @@ void Maincard()	//시작시 라이어카드 정하는 함수
 	}
 }
 
+void TipTool()
+{
+	int value;
+	const char* TipText[Tip];
+	value = rand() % Tip;
+	TipText[0] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n이거 아시나요? 2025년 1월 3일까지 Liar's bar가\n스팀에서 할인중입니다!";
+	TipText[1] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n툴팁에 적을게 생각이 안나네요!";
+	TipText[2] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n싱글과 멀티플레이의 게임 룰은 살짝 다르답니다.";
+	TipText[3] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n이 게임에는 개성있는 캐릭터는 여러분 말고는 존재하지 않습니다.";
+	TipText[4] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n당길 수 있는 방아쇠의 최대치는 5입니다. 6번째로 당기는 방아쇠는..";
+	TipText[5] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n제 깃허브 주소는 https://github.com/thdehdgns 입니다!";
+	TipText[6] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n한판에 소요되는 시간은..저도 잘 모르겠네요. 2인은 10분내외로 끝나지 않을까요?";
+
+
+	printf("%s", TipText[value]);
+}
+
+void ShapBul(char playerBu[])
+{
+	int value = 0;
+	
+	value = rand() % 6;
+	playerBu[value] = 'O';
+	
+}
+
+void RussianRoulette()
+{
+	ShapBul(MpB1);
+	ShapBul(MpB2);
+	ShapBul(MpB3);
+	ShapBul(MpB4);
+}
 
 void DeakShp(char HomeDeak[]) //홈덱을 섞는 함수
 {
@@ -147,7 +198,7 @@ void DvideCard(char tile[], int Min, int Max) //패 나누는 함수
 
 void MultyLoding()
 {
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n                    굉장히 쓸대없지만 바로넘어가면 심심하니 있는 로딩창");
+	TipTool();
 	for (int i = 0; i < 3; i++)
 	{
 		printf(".");
@@ -576,87 +627,166 @@ void SinggleGame()
 
 void MultyPlayerDie(char Players)
 {
+	Rusian = 1;
 	if (Players == 'A')
 	{
-		
-		P1Die = 'O';
-		BeforDiePlayer = 'A';
-		playerCount--;
-		BeforPlayer = 'A';
+		if (MpB1[Acount] == 'O')
+		{
+			printf("[%d] 번째 구멍에 총알이있었습니다!", Acount);
+			P1Die = 'O';
+			BeforDiePlayer = 'A';
+			playerCount--;
+			BeforPlayer = 'A';
+		}
+		else
+		{
+			printf("다행이 [A]플레이어는 총알을 피했습니다!\n");
+			Acount++;
+		}
+
 	}
 	else if (Players == 'B')
 	{
-		
-		P2Die = 'O';
-		BeforDiePlayer = 'B';
-		playerCount--;
-		BeforPlayer = 'B';
+		if (MpB2[Acount] == 'O')
+		{
+			printf("[%d] 번째 구멍에 총알이있었습니다!", Bcount);
+			P2Die = 'O';
+			BeforDiePlayer = 'B';
+			playerCount--;
+			BeforPlayer = 'B';
+		}
+		else
+		{
+			printf("다행이 [B]플레이어는 총알을 피했습니다!\n");
+			Bcount++;
+		}
+
 
 	}
 	else if (Players == 'C')
 	{
-		
-		P3Die = 'O';
-		BeforDiePlayer = 'C';
-		playerCount--;
-		BeforPlayer = 'C';
+		if (MpB3[Ccount] == 'O')
+		{
+			printf("[%d] 번째 구멍에 총알이있었습니다!", Ccount);
+			P3Die = 'O';
+			BeforDiePlayer = 'C';
+			playerCount--;
+			BeforPlayer = 'C';
+		}
+		else
+		{
+			printf("다행이 [C]플레이어는 총알을 피했습니다!\n");
+			Ccount++;
+		}
+
 
 	}
 	else if (Players == 'D')
 	{
-		
-		P4Die = 'O';
-		BeforDiePlayer = 'D';
-		playerCount--;
-		BeforPlayer = 'D';
+		if (MpB4[Acount] == 'O')
+		{
+			printf("[%d] 번째 구멍에 총알이있었습니다!", Dcount);
+			P4Die = 'O';
+			BeforDiePlayer = 'D';
+			playerCount--;
+			BeforPlayer = 'D';
+		}
+		else
+		{
+			printf("다행이 [D]플레이어는 총알을 피했습니다!\n");
+			Dcount++;
+		}
+
 
 	}
 }
 
 void MultyLiarkill(char Players)
 {
+	Rusian = 1;
 	if (BeforPlayer == 'A')
 	{
 		printf("[A]플레이어는 라이어가 맞았습니다!\n");
-		P1Die = 'O';
-		BeforDiePlayer = 'A';
-		playerCount--;
-		BeforPlayer = 'A';
+		if (MpB1[Acount] == 'O')
+		{
+			printf("[%d] 번째 구멍에 총알이있었습니다!", Acount+1);
+			P1Die = 'O';
+			BeforDiePlayer = 'A';
+			playerCount--;
+			BeforPlayer = 'A';
+		}
+		else
+		{
+			printf("다행이 [A]플레이어는 총알을 피했습니다!\n");
+			Acount++;
+		}
 
 	}
 	else if (BeforPlayer == 'B')
 	{
 		printf("[B]플레이어는 라이어가 맞았습니다!\n");
-		P2Die = 'O';
-		BeforDiePlayer = 'B';
-		playerCount--;
-		BeforPlayer = 'B';
+		if (MpB2[Acount] == 'O')
+		{
+			printf("[%d] 번째 구멍에 총알이있었습니다!", Bcount + 1);
+			P2Die = 'O';
+			BeforDiePlayer = 'B';
+			playerCount--;
+			BeforPlayer = 'B';
+		}
+		else
+		{
+			printf("다행이 [B]플레이어는 총알을 피했습니다!\n");
+			Bcount++;
+		}
+		
 
 	}
 	else if (BeforPlayer == 'C')
 	{
 		printf("[C]플레이어는 라이어가 맞았습니다!\n");
-		P3Die = 'O';
-		BeforDiePlayer = 'C';
-		playerCount--;
-		BeforPlayer = 'C';
+		if (MpB3[Ccount] == 'O')
+		{
+			printf("[%d] 번째 구멍에 총알이있었습니다!", Ccount + 1);
+			P3Die = 'O';
+			BeforDiePlayer = 'C';
+			playerCount--;
+			BeforPlayer = 'C';
+		}
+		else
+		{
+			printf("다행이 [C]플레이어는 총알을 피했습니다!\n");
+			Ccount++;
+		}
+		
 
 	}
 	else if (BeforPlayer == 'D')
 	{
 		printf("[D]플레이어는 라이어가 맞았습니다!\n");
-		P4Die = 'O';
-		BeforDiePlayer = 'D';
-		playerCount--;
-		BeforPlayer = 'D';
+		if (MpB4[Acount] == 'O')
+		{
+			printf("[%d] 번째 구멍에 총알이있었습니다!", Dcount + 1);
+			P4Die = 'O';
+			BeforDiePlayer = 'D';
+			playerCount--;
+			BeforPlayer = 'D';
+		}
+		else
+		{
+			printf("다행이 [D]플레이어는 총알을 피했습니다!\n");
+			Dcount++;
+		}
+		
+		
 	}
 }
 
-void MultyPlayGame(char Players[],char IndexPlayer,int min, int max) //필요한 정보 : 플레이어의 패, 플레이어의 순서
+void MultyPlayGame(char Players[],char IndexPlayer,int min, int max,int Count) //필요한 정보 : 플레이어의 패, 플레이어의 순서
 {
 	char T = 0;
 	system("cls");
 	printf("[%c] Player의 턴\n\n", IndexPlayer);
+	printf("방아쇠를 당긴 횟수 [%d]\n\n", Count);
 	int Choice = 0;
 	printf("Main Card : %c\n\n\n", MainPlayCard);
 	printf("            ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n");
@@ -712,7 +842,7 @@ void MultyPlayGame(char Players[],char IndexPlayer,int min, int max) //필요한 정
 			}
 			else
 			{
-				printf("잘못 지목하여 사망하셨습니다!\n");
+				printf("잘못 지목하셨습니다!\n");
 				printf("[%c]플레이어가 낸 카드는...[%c]입니다!\n",BeforPlayer,BeforCard);
 				MultyPlayerDie(IndexPlayer);
 				T = _getch();
@@ -757,28 +887,81 @@ void MultyGame()
 	MultyLoding();
 	while (1)
 	{
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
+		}
 		if (P1Die != 'O')
 		{
-			MultyPlayGame(Mp1, 'A', 0, 5);
+			MultyPlayGame(Mp1, 'A', 0, 5,Acount);
+		}
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
 		}
 		if (P2Die != 'O')
 		{
-			MultyPlayGame(Mp2, 'B', 5, 10);
+			MultyPlayGame(Mp2, 'B', 5, 10, Bcount);
+		}
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
 		}
 		if (P3Die != 'O')
 		{
-			MultyPlayGame(Mp3, 'C', 10, 15);
+			MultyPlayGame(Mp3, 'C', 10, 15, Ccount);
+		}
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
 		}
 		if (P4Die != 'O')
 		{
-			MultyPlayGame(Mp4, 'D', 15, 20);
+			MultyPlayGame(Mp4, 'D', 15, 20, Dcount);
 		}
-		if (playerCount <= 1)
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
+		}
+		
+	}
+	
+}
+
+void Multy2playerGame()
+{
+	MultyLoding();
+	while (1)
+	{
+		if (P1Die != 'O')
+		{
+			MultyPlayGame(Mp1, 'A', 0, 5, Acount);
+		}
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
+		}
+		if (P2Die != 'O')
+		{
+			MultyPlayGame(Mp2, 'B', 5, 10, Bcount);
+		}
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
+		}
+		if (playerCount <= 3)
 		{
 			if (P1Die != 'O')
 			{
 				system("cls");
-				printf("%c 플레이어가 승리하였습니다!.\n",'A');
+				printf("%c 플레이어가 승리하였습니다!.\n", 'A');
 				Sleep(1000);
 
 			}
@@ -787,28 +970,40 @@ void MultyGame()
 				system("cls");
 				printf("%c 플레이어가 승리하였습니다!.\n", 'B');
 				Sleep(1000);
-
 			}
-			else if (P3Die != 'O')
-			{
-				system("cls");
-				printf("%c 플레이어가 승리하였습니다!.\n", 'C');
-				Sleep(1000);
-
-			}
-			else if (P4Die != 'O')
-			{
-				system("cls");
-				printf("%c 플레이어가 승리하였습니다!.\n",'D');
-				Sleep(1000);
-			}
+			
 			return 0;
 		}
 	}
-	
+
 }
+void BulletReste()
+{
+	Acount = 0;
+	Bcount = 0;
+	Ccount = 0;
+	Dcount = 0;
 
+	MpB1[6] =  'X','X','X','X','X' ,'X' ;
+	MpB2[6] =  'X','X','X','X','X' ,'X' ;
+	MpB3[6] =  'X','X','X','X','X' ,'X' ;
+	MpB4[6] =  'X','X','X','X','X' ,'X' ;
+	RussianRoulette();
+}
+void PlayerDieRest()
+{
+	playerCount = 4;
 
+	P1Die = 'X';
+	P2Die = 'X';
+	P3Die = 'X';
+	P4Die = 'X';
+
+	befordie1 = 'X';
+	befordie2 = 'X';
+	befordie3 = 'X';
+	befordie4 = 'X';
+}
 void GameReset()
 {
 	HomeDeak[SIZE] ='Q','Q','Q','Q','Q','Q',
@@ -830,27 +1025,19 @@ void GameReset()
 	BeforPlayer = 'p';
 	BeforCard = 'X';
 	MainTurn = 0;
-	befordie1 = 'X';
-	befordie2 = 'X';
-	befordie3 = 'X';
-	befordie4 = 'X';
 
 	Mp1[5] =  ' ',' ',' ',' ',' ' ;
 	Mp2[5] =  ' ',' ',' ',' ',' ' ;
 	Mp3[5] =  ' ',' ',' ',' ',' ' ;
 	Mp4[5] =  ' ',' ',' ',' ',' ' ;
 
-	playerCount = 4;
-
-	P1Die = 'X';
-	P2Die = 'X';
-	P3Die = 'X';
-	P4Die = 'X';
+	
 
 	BeforDiePlayer = ' ';
 
 	DeakShp(HomeDeak); //홈덱을 랜덤으로 섞음
 	Dvide();
+	
 	MpDvide();
 	Maincard();
 }
@@ -937,6 +1124,7 @@ void ChoicePlayers()
 		case Enter:
 			if (Num == 0)
 			{
+				PlayerDieRest();
 				GameReset();
 				system("cls");
 				SinggleGame();
@@ -944,10 +1132,40 @@ void ChoicePlayers()
 				return 0;
 			}
 			else if (Num == 1)
-			{	
-				printf("아직 업데이트 중입니다.");
-				Sleep(500);
+			{
+				BulletReste();
+				PlayerDieRest();
+				GameReset();
 				system("cls");
+				while (1)
+				{
+					if (playerCount <= 3)
+					{
+						if (P1Die != 'O')
+						{
+							system("cls");
+							printf("%c 플레이어가 승리하였습니다!.\n", 'A');
+							Sleep(1000);
+							break;
+						}
+						else if (P2Die != 'O')
+						{
+							system("cls");
+							printf("%c 플레이어가 승리하였습니다!.\n", 'B');
+							Sleep(1000);
+
+							break;
+
+						}
+					}
+					else
+					{
+						GameReset();
+						Multy2playerGame();
+						system("cls");
+					}
+				}
+				
 			}
 			else if (Num == 2)
 			{
@@ -957,14 +1175,62 @@ void ChoicePlayers()
 			}
 			else if (Num == 3)
 			{
+				BulletReste();
+				PlayerDieRest();
 				GameReset();
 				system("cls");
-				MultyGame();
+				while (1)
+				{
+					if (playerCount <= 1)
+					{
+						if (P1Die != 'O')
+						{
+							system("cls");
+							printf("%c 플레이어가 승리하였습니다!.\n", 'A');
+							Sleep(1000);
+							break;
+
+						}
+						else if (P2Die != 'O')
+						{
+							system("cls");
+							printf("%c 플레이어가 승리하였습니다!.\n", 'B');
+							Sleep(1000);
+
+							break;
+
+						}
+						else if (P3Die != 'O')
+						{
+							system("cls");
+							printf("%c 플레이어가 승리하였습니다!.\n", 'C');
+							Sleep(1000);
+
+							break;
+
+						}
+						else if (P4Die != 'O')
+						{
+							system("cls");
+							printf("%c 플레이어가 승리하였습니다!.\n", 'D');
+							Sleep(1000);
+							break;
+
+						}
+					}
+					else
+					{
+						GameReset();
+						MultyGame();
+						system("cls");
+					}
+				}
 			}
 			else if (Num == 4)
 			{
 				system("cls");
 				Setting();
+				
 			}
 		default:
 			system("cls");
@@ -1025,7 +1291,6 @@ void ChoicePlayers()
 
 int main()
 {	
-	
 	srand(time(NULL));
 	ChoicePlayers();
 	return 0;
