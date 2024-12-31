@@ -81,9 +81,6 @@ char P3Die = 'X';
 char P4Die = 'X';
 
 
-
-
-
 char BeforDiePlayer = ' ';
 
 void Loding(int Num)
@@ -259,6 +256,9 @@ void LiarKill()
 
 	}
 }
+
+#pragma region Singgle
+
 
 void Com1Turn() //1번 ai턴
 {
@@ -597,6 +597,7 @@ void Turn()	//플레이어 턴
 	}
 	Choice = 0;
 }
+#pragma endregion
 
 void SinggleGame()
 {
@@ -632,6 +633,8 @@ void MultyPlayerDie(char Players)
 	{
 		if (MpB1[Acount] == 'O')
 		{
+			printf("[A]플레이어는...");
+			Sleep(1000);
 			printf("[%d] 번째 구멍에 총알이있었습니다!", Acount);
 			P1Die = 'O';
 			BeforDiePlayer = 'A';
@@ -640,15 +643,19 @@ void MultyPlayerDie(char Players)
 		}
 		else
 		{
-			printf("다행이 [A]플레이어는 총알을 피했습니다!\n");
+			printf("[A]플레이어는...");
+			Sleep(1000);
+			printf("총알을 피했습니다!\n");
 			Acount++;
 		}
 
 	}
 	else if (Players == 'B')
 	{
-		if (MpB2[Acount] == 'O')
+		if (MpB2[Bcount] == 'O')
 		{
+			printf("[B]플레이어는...");
+			Sleep(1000);
 			printf("[%d] 번째 구멍에 총알이있었습니다!", Bcount);
 			P2Die = 'O';
 			BeforDiePlayer = 'B';
@@ -657,7 +664,10 @@ void MultyPlayerDie(char Players)
 		}
 		else
 		{
-			printf("다행이 [B]플레이어는 총알을 피했습니다!\n");
+			printf("[B]플레이어는...");
+			Sleep(1000);
+
+			printf("총알을 피했습니다!\n");
 			Bcount++;
 		}
 
@@ -667,6 +677,8 @@ void MultyPlayerDie(char Players)
 	{
 		if (MpB3[Ccount] == 'O')
 		{
+			printf("[C]플레이어는...");
+			Sleep(1000);
 			printf("[%d] 번째 구멍에 총알이있었습니다!", Ccount);
 			P3Die = 'O';
 			BeforDiePlayer = 'C';
@@ -675,7 +687,9 @@ void MultyPlayerDie(char Players)
 		}
 		else
 		{
-			printf("다행이 [C]플레이어는 총알을 피했습니다!\n");
+			printf("[C]플레이어는...");
+			Sleep(1000);
+			printf("총알을 피했습니다!\n");
 			Ccount++;
 		}
 
@@ -683,8 +697,10 @@ void MultyPlayerDie(char Players)
 	}
 	else if (Players == 'D')
 	{
-		if (MpB4[Acount] == 'O')
+		if (MpB4[Dcount] == 'O')
 		{
+			printf("[D]플레이어는...");
+			Sleep(1000);
 			printf("[%d] 번째 구멍에 총알이있었습니다!", Dcount);
 			P4Die = 'O';
 			BeforDiePlayer = 'D';
@@ -693,7 +709,9 @@ void MultyPlayerDie(char Players)
 		}
 		else
 		{
-			printf("다행이 [D]플레이어는 총알을 피했습니다!\n");
+			printf("[D]플레이어는...");
+			Sleep(1000);
+			printf("총알을 피했습니다!\n");
 			Dcount++;
 		}
 
@@ -709,6 +727,8 @@ void MultyLiarkill(char Players)
 		printf("[A]플레이어는 라이어가 맞았습니다!\n");
 		if (MpB1[Acount] == 'O')
 		{
+			printf("[A]플레이어는...");
+			Sleep(1000);
 			printf("[%d] 번째 구멍에 총알이있었습니다!", Acount+1);
 			P1Die = 'O';
 			BeforDiePlayer = 'A';
@@ -717,7 +737,10 @@ void MultyLiarkill(char Players)
 		}
 		else
 		{
-			printf("다행이 [A]플레이어는 총알을 피했습니다!\n");
+			printf("[A]플레이어는...");
+			Sleep(1000);
+			printf("총알을 피했습니다!\n");
+
 			Acount++;
 		}
 
@@ -725,8 +748,10 @@ void MultyLiarkill(char Players)
 	else if (BeforPlayer == 'B')
 	{
 		printf("[B]플레이어는 라이어가 맞았습니다!\n");
-		if (MpB2[Acount] == 'O')
+		if (MpB2[Bcount] == 'O')
 		{
+			printf("[B]플레이어는...");
+			Sleep(1000);
 			printf("[%d] 번째 구멍에 총알이있었습니다!", Bcount + 1);
 			P2Die = 'O';
 			BeforDiePlayer = 'B';
@@ -735,7 +760,10 @@ void MultyLiarkill(char Players)
 		}
 		else
 		{
-			printf("다행이 [B]플레이어는 총알을 피했습니다!\n");
+			printf("[B]플레이어는...");
+			Sleep(1000);
+			printf("총알을 피했습니다!\n");
+
 			Bcount++;
 		}
 		
@@ -746,6 +774,8 @@ void MultyLiarkill(char Players)
 		printf("[C]플레이어는 라이어가 맞았습니다!\n");
 		if (MpB3[Ccount] == 'O')
 		{
+			printf("[C]플레이어는...");
+			Sleep(1000);
 			printf("[%d] 번째 구멍에 총알이있었습니다!", Ccount + 1);
 			P3Die = 'O';
 			BeforDiePlayer = 'C';
@@ -754,7 +784,10 @@ void MultyLiarkill(char Players)
 		}
 		else
 		{
-			printf("다행이 [C]플레이어는 총알을 피했습니다!\n");
+			
+			printf("[C]플레이어는...");
+			Sleep(1000);
+			printf("총알을 피했습니다!\n");
 			Ccount++;
 		}
 		
@@ -763,8 +796,10 @@ void MultyLiarkill(char Players)
 	else if (BeforPlayer == 'D')
 	{
 		printf("[D]플레이어는 라이어가 맞았습니다!\n");
-		if (MpB4[Acount] == 'O')
+		if (MpB4[Dcount] == 'O')
 		{
+			printf("[D]플레이어는...");
+			Sleep(1000);
 			printf("[%d] 번째 구멍에 총알이있었습니다!", Dcount + 1);
 			P4Die = 'O';
 			BeforDiePlayer = 'D';
@@ -773,7 +808,10 @@ void MultyLiarkill(char Players)
 		}
 		else
 		{
-			printf("다행이 [D]플레이어는 총알을 피했습니다!\n");
+			printf("[D]플레이어는...");
+			Sleep(1000);
+			printf("총알을 피했습니다!\n");
+
 			Dcount++;
 		}
 		
@@ -786,7 +824,7 @@ void MultyPlayGame(char Players[],char IndexPlayer,int min, int max,int Count) /
 	char T = 0;
 	system("cls");
 	printf("[%c] Player의 턴\n\n", IndexPlayer);
-	printf("방아쇠를 당긴 횟수 [%d]\n\n", Count);
+	printf("방아쇠를 당긴 횟수 [%d/6]\n\n", Count);
 	int Choice = 0;
 	printf("Main Card : %c\n\n\n", MainPlayCard);
 	printf("            ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\n");
@@ -819,7 +857,8 @@ void MultyPlayGame(char Players[],char IndexPlayer,int min, int max,int Count) /
 				}
 				else if (BeforCard == 'J')
 				{
-					printf("잘못 지목하여 사망하셨습니다!\n");
+					printf("[%c]는 진실된 사람이었습니다!\n",BeforPlayer);
+					printf("[%c]플레이어가 낸 카드는...[%c]입니다!\n", BeforPlayer, BeforCard);
 					MultyPlayerDie(IndexPlayer);
 					Sleep(1000);
 					system("cls");
@@ -842,7 +881,7 @@ void MultyPlayGame(char Players[],char IndexPlayer,int min, int max,int Count) /
 			}
 			else
 			{
-				printf("잘못 지목하셨습니다!\n");
+				printf("[%c]는 진실된 사람이었습니다!\n", BeforPlayer);
 				printf("[%c]플레이어가 낸 카드는...[%c]입니다!\n",BeforPlayer,BeforCard);
 				MultyPlayerDie(IndexPlayer);
 				T = _getch();
@@ -882,7 +921,7 @@ void MultyPlayGame(char Players[],char IndexPlayer,int min, int max,int Count) /
 }
 
 
-void MultyGame()
+void Multy4Game()
 {
 	MultyLoding();
 	while (1)
@@ -932,7 +971,47 @@ void MultyGame()
 	}
 	
 }
+void Multy3Game()
+{
+	MultyLoding();
+	while (1)
+	{
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
+		}
+		if (P1Die != 'O')
+		{
+			MultyPlayGame(Mp1, 'A', 0, 5, Acount);
+		}
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
+		}
+		if (P2Die != 'O')
+		{
+			MultyPlayGame(Mp2, 'B', 5, 10, Bcount);
+		}
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
+		}
+		if (P3Die != 'O')
+		{
+			MultyPlayGame(Mp3, 'C', 10, 15, Ccount);
+		}
+		if (Rusian >= 1)
+		{
+			Rusian = 0;
+			return 0;
+		}
 
+	}
+
+}
 void Multy2playerGame()
 {
 	MultyLoding();
@@ -1004,7 +1083,7 @@ void PlayerDieRest()
 	befordie3 = 'X';
 	befordie4 = 'X';
 }
-void GameReset()
+void CardReset()
 {
 	HomeDeak[SIZE] ='Q','Q','Q','Q','Q','Q',
 					'K','K','K','K','K','K',
@@ -1041,7 +1120,7 @@ void GameReset()
 	MpDvide();
 	Maincard();
 }
-void Load(const char* filename)
+void Load(const char* filename) //COLOR아스키아트 불러오기
 {
 	char buffer[10000] = { 0, };
 	FILE* file = fopen(filename, "r");
@@ -1125,7 +1204,7 @@ void ChoicePlayers()
 			if (Num == 0)
 			{
 				PlayerDieRest();
-				GameReset();
+				CardReset();
 				system("cls");
 				SinggleGame();
 				printf("이전 카드는 [%c]입니다.", BeforCard);
@@ -1135,7 +1214,7 @@ void ChoicePlayers()
 			{
 				BulletReste();
 				PlayerDieRest();
-				GameReset();
+				CardReset();
 				system("cls");
 				while (1)
 				{
@@ -1160,7 +1239,7 @@ void ChoicePlayers()
 					}
 					else
 					{
-						GameReset();
+						CardReset();
 						Multy2playerGame();
 						system("cls");
 					}
@@ -1169,15 +1248,54 @@ void ChoicePlayers()
 			}
 			else if (Num == 2)
 			{
-				printf("아직 업데이트 중입니다.");
-				Sleep(500);
+				BulletReste();
+				PlayerDieRest();
+				CardReset();
 				system("cls");
+				while (1)
+				{
+					if (playerCount <= 2)
+					{
+						if (P1Die != 'O')
+						{
+							system("cls");
+							printf("%c 플레이어가 승리하였습니다!.\n", 'A');
+							Sleep(1000);
+							break;
+
+						}
+						else if (P2Die != 'O')
+						{
+							system("cls");
+							printf("%c 플레이어가 승리하였습니다!.\n", 'B');
+							Sleep(1000);
+
+							break;
+
+						}
+						else if (P3Die != 'O')
+						{
+							system("cls");
+							printf("%c 플레이어가 승리하였습니다!.\n", 'C');
+							Sleep(1000);
+
+							break;
+
+						}
+					}
+					else
+					{
+						CardReset();
+						Multy3Game();
+						system("cls");
+					}
+				}
 			}
 			else if (Num == 3)
 			{
 				BulletReste();
 				PlayerDieRest();
-				GameReset();
+				CardReset();
 				system("cls");
 				while (1)
 				{
@@ -1220,8 +1338,8 @@ void ChoicePlayers()
 					}
 					else
 					{
-						GameReset();
-						MultyGame();
+						CardReset();
+						Multy4Game();
 						system("cls");
 					}
 				}
