@@ -1,29 +1,29 @@
 ﻿  MainGame.c
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(541,15): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(553,14): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(559,14): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(565,14): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(571,14): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(624,12): warning C4098: 'SinggleGame': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(866,10): warning C4013: '_getch'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(867,14): warning C4098: 'MultyPlayGame': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(877,14): warning C4098: 'MultyPlayGame': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(891,13): warning C4098: 'MultyPlayGame': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(920,10): warning C4098: 'MultyPlayGame': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(932,12): warning C4098: 'Multy4Game': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(941,12): warning C4098: 'Multy4Game': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(950,12): warning C4098: 'Multy4Game': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(959,12): warning C4098: 'Multy4Game': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(968,12): warning C4098: 'Multy4Game': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(982,12): warning C4098: 'Multy3Game': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(991,12): warning C4098: 'Multy3Game': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1000,12): warning C4098: 'Multy3Game': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1009,12): warning C4098: 'Multy3Game': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1027,12): warning C4098: 'Multy2playerGame': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1036,12): warning C4098: 'Multy2playerGame': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1054,12): warning C4098: 'Multy2playerGame': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1140,11): warning C4013: 'getch'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1159,12): warning C4098: 'Setting': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1211,13): warning C4098: 'ChoicePlayers': 'void' 함수에서 값을 반환하고 있습니다.
-C:\Users\Administrator\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1412,8): warning C4244: '함수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Liar's bar.vcxproj -> C:\Users\Administrator\Desktop\C-CONSOL-GAME\Program\x64\Debug\Liar's bar.exe
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(541,7): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(553,6): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(559,6): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(565,6): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(571,6): warning C4098: 'Turn': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(624,4): warning C4098: 'SinggleGame': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(866,10): warning C4013: '_getch'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(867,6): warning C4098: 'MultyPlayGame': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(877,6): warning C4098: 'MultyPlayGame': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(891,5): warning C4098: 'MultyPlayGame': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(920,2): warning C4098: 'MultyPlayGame': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(932,4): warning C4098: 'Multy4Game': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(941,4): warning C4098: 'Multy4Game': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(950,4): warning C4098: 'Multy4Game': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(959,4): warning C4098: 'Multy4Game': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(968,4): warning C4098: 'Multy4Game': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(982,4): warning C4098: 'Multy3Game': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(991,4): warning C4098: 'Multy3Game': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1000,4): warning C4098: 'Multy3Game': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1009,4): warning C4098: 'Multy3Game': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1027,4): warning C4098: 'Multy2playerGame': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1036,4): warning C4098: 'Multy2playerGame': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1054,4): warning C4098: 'Multy2playerGame': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1140,11): warning C4013: 'getch'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1159,4): warning C4098: 'Setting': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1211,5): warning C4098: 'ChoicePlayers': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Liar's bar\MainGame.c(1413,8): warning C4244: '함수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Liar's bar.vcxproj -> C:\Users\ehdgn\OneDrive\Desktop\C-CONSOL-GAME\Program\x64\Debug\Liar's bar.exe

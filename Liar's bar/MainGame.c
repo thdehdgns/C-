@@ -144,13 +144,13 @@ void TipTool()
 	int value;
 	const char* TipText[Tip];
 	value = rand() % Tip;
-	TipText[0] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n이거 아시나요? 2025년 1월 3일까지 Liar's bar가\n스팀에서 할인중입니다!";
-	TipText[1] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n툴팁에 적을게 생각이 안나네요!";
-	TipText[2] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n싱글과 멀티플레이의 게임 룰은 살짝 다르답니다.";
-	TipText[3] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n이 게임에는 개성있는 캐릭터는 여러분 말고는 존재하지 않습니다.";
-	TipText[4] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n당길 수 있는 방아쇠의 최대치는 5입니다. 6번째로 당기는 방아쇠는..";
-	TipText[5] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n제 깃허브 주소는 https://github.com/thdehdgns 입니다!";
-	TipText[6] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n한판에 소요되는 시간은..저도 잘 모르겠네요. 2인은 10분내외로 끝나지 않을까요?";
+	TipText[0] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                Loding\n\n\n\n\n\n\n\n\n\n\n\n\n이거 아시나요? 2025년 1월 3일까지 Liar's bar가\n스팀에서 할인중입니다!";
+	TipText[1] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                Loding\n\n\n\n\n\n\n\n\n\n\n\n\n툴팁에 적을게 생각이 안나네요!";
+	TipText[2] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                Loding\n\n\n\n\n\n\n\n\n\n\n\n\n싱글과 멀티플레이의 게임 룰은 살짝 다르답니다.";
+	TipText[3] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                Loding\n\n\n\n\n\n\n\n\n\n\n\n\n이 게임에는 개성있는 캐릭터는 여러분 말고는 존재하지 않습니다.";
+	TipText[4] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                Loding\n\n\n\n\n\n\n\n\n\n\n\n\n당길 수 있는 방아쇠의 최대치는 5입니다. 6번째로 당기는 방아쇠는..";
+	TipText[5] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                Loding\n\n\n\n\n\n\n\n\n\n\n\n\n제 깃허브 주소는 https://github.com/thdehdgns 입니다!";
+	TipText[6] = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                Loding\n\n\n\n\n\n\n\n\n\n\n\n\n한판에 소요되는 시간은..저도 잘 모르겠네요. 2인은 10분내외로 끝나지 않을까요?";
 
 
 	printf("%s", TipText[value]);
@@ -1409,6 +1409,7 @@ void ChoicePlayers()
 
 int main()
 {	
+	system("mode con: cols=75 lines=25");
 	srand(time(NULL));
 	ChoicePlayers();
 	return 0;
